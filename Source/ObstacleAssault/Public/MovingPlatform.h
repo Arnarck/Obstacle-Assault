@@ -23,4 +23,14 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// ".h" files acts like the "MyBlueprint" panel, where you can create functions, variables, etc.
+	// ".cpp" files acts more like the "Event Graph" itself, where you can use / modify variable values, implement functionallity to your methods, etc.
+	// In other words...
+	// The "header" file is for configuring and declaring what things are in the class
+	// while "C++" file is where the actual code lives.
+	// UPROPERTY() is like C# attributes ("[SerializeField]", "[HideInInspector]", etc)
+	UPROPERTY(EditAnywhere) int32 MyInt = 0;
+	UPROPERTY(EditAnywhere) bool MyBool = true;
+	UPROPERTY(EditAnywhere) FString welcome_to_cpp_message = "Welcome to C++";
+
 };

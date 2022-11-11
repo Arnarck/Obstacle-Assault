@@ -16,6 +16,7 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	MyInt = 5 + 4;
 }
 
 // Called every frame
