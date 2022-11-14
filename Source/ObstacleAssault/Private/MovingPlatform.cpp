@@ -15,8 +15,8 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	MyInt = 5 + 4;
+	start_location = actor_position_on_play;
+	SetActorLocation(actor_position_on_play);
 }
 
 // Called every frame
@@ -24,5 +24,9 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GetActorLocation().Y >= start_location.Y + 200) direction = -1;
+	else if (GetActorLocation().Y <= start_location.Y - 200) direction = 1;
+
+	SetActorLocation(GetActorLocation() + (FVector(0, 1, 0) * DeltaTime * direction * 100));
 }
 
