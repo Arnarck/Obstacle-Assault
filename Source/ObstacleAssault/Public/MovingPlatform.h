@@ -29,8 +29,7 @@ public:
 	// The "header" file is for configuring and declaring what things are in the class
 	// while "C++" file is where the actual code lives.
 	// UPROPERTY() is like C# attributes ("[SerializeField]", "[HideInInspector]", etc)
-	UPROPERTY(EditAnywhere) FVector actor_position_on_play;
-	FVector start_location;
-	float direction = 1;
-
+	UPROPERTY(EditAnywhere, Category="Moving Platform Settings") FVector PlatformVelocity = FVector(100, 0, 0);
+	UPROPERTY(EditAnywhere, Category = "Moving Platform Settings") float DistanceToMove = 100;
+	FVector StartLocation;
 };

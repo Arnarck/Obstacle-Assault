@@ -15,8 +15,7 @@ AMovingPlatform::AMovingPlatform()
 void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
-	start_location = actor_position_on_play;
-	SetActorLocation(actor_position_on_play);
+	StartLocation = GetActorLocation();
 }
 
 // Called every frame
@@ -24,9 +23,18 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (GetActorLocation().Y >= start_location.Y + 200) direction = -1;
-	else if (GetActorLocation().Y <= start_location.Y - 200) direction = 1;
+	FVector CurrentLocation = GetActorLocation();
+	CurrentLocation += DeltaTime * PlatformVelocity;
+	SetActorLocation(CurrentLocation);
 
-	SetActorLocation(GetActorLocation() + (FVector(0, 1, 0) * DeltaTime * direction * 100));
+	// Scope Resolution Operator (::) -> Looks inside a class. Allow to get functions that don't run on a particular INSTANCE of that class.
+	// Dot Operator (.) Looks inside an INSTANCE of a class.
+	float DistanceMoved = FVector::Distance(StartLocation, CurrentLocation);
+
+	if (DistanceMoved >= DistanceToMove)
+	{
+		PlatformVelocity = -PlatformVelocity;
+		StartLocation = CurrentLocation;
+	}
 }
 
