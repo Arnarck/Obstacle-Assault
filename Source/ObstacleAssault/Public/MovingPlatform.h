@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MovingPlatform.generated.h"
+//using namespace UP;
 
 UCLASS()
 class OBSTACLEASSAULT_API AMovingPlatform : public AActor
@@ -19,7 +20,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+private:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -32,4 +33,6 @@ public:
 	UPROPERTY(EditAnywhere, Category="Moving Platform Settings") FVector PlatformVelocity = FVector(100, 0, 0);
 	UPROPERTY(EditAnywhere, Category = "Moving Platform Settings") float DistanceToMove = 100;
 	FVector StartLocation;
+
+	void MovePlatform();
 };
